@@ -1,5 +1,6 @@
 <script lang="ts">
   import GuessablePoem from "./GuessablePoem.svelte";
+  import OrderablePoem from "./OrderablePoem.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
 
   export let name: string;
@@ -67,7 +68,8 @@
     size="100"
   />
   <br />
-  <GuessablePoem poem={poemStruct} {guessed_words} />
+  <!-- <GuessablePoem poem={poemStruct} {guessed_words} /> -->
+  <OrderablePoem poem={poemStruct} />
 </main>
 
 <style>
