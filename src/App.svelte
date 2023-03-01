@@ -49,40 +49,25 @@
   //   let guessed_words = new Set<RevealedWord>();
 
   function check_guess(guess: string) {
-    console.log("check_guess: %s", guess);
     let upper_guess = name.toUpperCase();
     if (word_set.has(upper_guess) && !guessed_words.has(upper_guess)) {
-      console.log("check_guess succesful!: %s", upper_guess);
       guessed_words.add(upper_guess);
       guessed_words = guessed_words;
       name = "";
-      console.log("guessed words: %s", new Array(...guessed_words).join(" "));
     }
-    // throw new Error("Function not implemented.");
   }
 </script>
 
 <main>
-  <!-- <h1>Hello {name}!</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p> -->
-
   <h1>Dulce et decorum est By Wilfred Owen</h1>
-  <!-- <h2>By Wilfred Owen</h2> -->
   <input
     bind:value={name}
     on:input={() => check_guess(name)}
     placeholder="Enter poem words here..."
     size="100"
   />
-  <!-- <p>my name is {name}!</p>
-  {#if name === "chonks"}<p>That's numberwang!</p> {/if} -->
   <br />
   <GuessablePoem poem={poemStruct} {guessed_words} />
-  <!-- <Poem/> -->
-  <!-- <p>bingbingbing</p> -->
 </main>
 
 <style>

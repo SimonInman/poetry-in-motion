@@ -58,7 +58,6 @@
   </div>
 </div>
 <p>guessed words: {guessed_words.size}</p>
-<p>BANG</p>
 
 <style>
   div.poem {
