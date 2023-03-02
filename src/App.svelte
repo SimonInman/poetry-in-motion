@@ -61,12 +61,13 @@
 
 <main>
   <h1>Dulce et decorum est By Wilfred Owen</h1>
-  <input
+  <h2>Drag the poem lines into the correct order on the right-hand box</h2>
+  <!-- <input
     bind:value={name}
     on:input={() => check_guess(name)}
     placeholder="Enter poem words here..."
     size="100"
-  />
+  /> -->
   <br />
   <!-- <GuessablePoem poem={poemStruct} {guessed_words} /> -->
   <OrderablePoem poem={poemStruct} />

@@ -3,6 +3,7 @@
   import VerticalList from "./VerticalList.svelte";
 
   import type { Poem } from "./types.svelte";
+  import LineBank from "./LineBank.svelte";
   export let poem: Poem;
   //   export let guessed_words: Set<string>;
   let MockItems = [
@@ -30,8 +31,14 @@
 </script>
 
 <!-- <VerticalList items={MockItems} /> -->
-<VerticalList items={ShuffledWithIndexes} />
-<!-- <VerticalList items={poem_as_list_with_index} /> -->
+<div class="container">
+  <div class="flex-item">
+    <LineBank items={ShuffledWithIndexes} />
+  </div>
+  <div class="flex-item">
+    <VerticalList items={[]} />
+  </div>
+</div>
 
 <!-- <div
   use:dndzone={{ items: myItems, ...otherOptions }}
@@ -44,3 +51,16 @@
     </div>
   {/each}
 </div> -->
+
+<!-- <VerticalList items={poem_as_list_with_index} /> -->
+<style>
+  .container {
+    /* background-color: #2e4272; */
+    display: flex;
+    width: 100%;
+  }
+  .flex-item {
+    /* flex-grow: 1; */
+    width: 50%;
+  }
+</style>
