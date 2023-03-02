@@ -4,6 +4,7 @@
 
   import type { Poem } from "./types.svelte";
   import LineBank from "./LineBank.svelte";
+  import LineSlot from "./LineSlot.svelte";
   export let poem: Poem;
   //   export let guessed_words: Set<string>;
   let MockItems = [
@@ -35,8 +36,15 @@
   <div class="flex-item">
     <LineBank items={ShuffledWithIndexes} />
   </div>
+  <div class="spacer" />
+
   <div class="flex-item">
-    <VerticalList items={[]} />
+    <!-- <VerticalList items={[]} /> -->
+    <!-- Just need to hand each LineSlot a 0-N index.
+    Use #each with the indexes as a little hack to do this. -->
+    {#each poem_as_list_with_index as poem}
+      <LineSlot slotIndex={poem.id} items={[]} />
+    {/each}
   </div>
 </div>
 
@@ -62,5 +70,10 @@
   .flex-item {
     /* flex-grow: 1; */
     width: 50%;
+  }
+  div.spacer {
+    font-size: 0;
+    width: 20px;
+    line-height: 0;
   }
 </style>
