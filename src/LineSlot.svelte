@@ -4,6 +4,8 @@
   export let items;
   export let slotIndex;
 
+  let currentItemId;
+
   //   let correctlyPlacedSet: Set<number>;
   let correctlyPlacedSet = new Set();
 
@@ -20,16 +22,11 @@
   }
 
   function handleDndFinalize(e) {
-    let ItemsWithIndex = e.detail.items.map((item, currentIndex) => {
-      return { currentIndex: currentIndex, item: item };
-    });
-    let correctlyPlacedItems = ItemsWithIndex.filter((itemWithIndex) => {
-      return itemWithIndex.currentIndex == itemWithIndex.item.id;
-    }).map((itemWithIndex) => itemWithIndex.currentIndex);
-    correctlyPlacedSet = new Set(correctlyPlacedItems);
-    // console.log(correctlyPlacedSet);
-    // console.log(correctlyPlacedSet.has(0));
     items = e.detail.items;
+    if (items.length > 0) {
+      currentItemId = items[0].id;
+    }
+
     console.log(
       "is dropFromOthersDisabled: %s",
       options.dropFromOthersDisabled
@@ -41,18 +38,17 @@
   use:dndzone={options}
   on:consider={handleDndConsider}
   on:finalize={handleDndFinalize}
+  class:correct={slotIndex === currentItemId}
 >
   {#each items as item (item.id)}
     <div class="blah" animate:flip={{ duration: flipDurationMs }}>
-      <div class="line" class:correct={slotIndex === item.id}>
-        <!-- Shouldn't need these as blank lines shuold be removed now -->
-
-        {#if item.name === "\n"}
-          {" _ "}
-        {:else}
+      {#if item.name === "\n"}
+        <!-- skip -->
+      {:else}
+        <div class="line" class:correct={slotIndex === item.id}>
           {item.name}
-        {/if}
-      </div>
+        </div>
+      {/if}
     </div>
   {/each}
 </section>
@@ -60,7 +56,7 @@
 <style>
   section {
     width: 100%;
-    padding: 0.3em;
+    padding: 0.2em;
     border: 1px solid black;
     height: 16px;
   }

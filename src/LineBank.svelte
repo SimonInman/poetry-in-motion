@@ -3,6 +3,8 @@
   import { dndzone } from "svelte-dnd-action";
   export let items;
 
+  items = items.filter((line) => line.name != "\n");
+
   //   let correctlyPlacedSet: Set<number>;
   let correctlyPlacedSet = new Set();
 
@@ -34,13 +36,10 @@
   {#each items as item (item.id)}
     <div class="blah" animate:flip={{ duration: flipDurationMs }}>
       <div class="line" class:correct={correctlyPlacedSet.has(item.id)}>
-        {#if item.name === "\n"}
-          {" _ "}
-        {:else}
-          {item.name}
-        {/if}
+        {item.name}
       </div>
     </div>
+    <!-- {/if} -->
   {/each}
 </section>
 
@@ -64,7 +63,7 @@
     text-align: left;
     width: 100%;
     /* padding: 0.2em; */
-    border: 1px solid blue;
+    border: 0.8px solid blue;
     margin: 0.15em 0;
   }
 </style>

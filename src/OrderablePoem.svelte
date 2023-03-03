@@ -70,9 +70,9 @@
     width: 20px;
     line-height: 0;
   }
-  div.spacer {
+  div.vertical-spacer {
     font-size: 0;
-    height: 10px;
+    height: 15px;
     line-height: 0;
   }
 </style>
