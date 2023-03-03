@@ -45,6 +45,8 @@
   {#each items as item (item.id)}
     <div class="blah" animate:flip={{ duration: flipDurationMs }}>
       <div class="line" class:correct={slotIndex === item.id}>
+        <!-- Shouldn't need these as blank lines shuold be removed now -->
+
         {#if item.name === "\n"}
           {" _ "}
         {:else}
@@ -60,7 +62,6 @@
     width: 100%;
     padding: 0.3em;
     border: 1px solid black;
-    overflow: scroll;
     height: 16px;
   }
   .correct {

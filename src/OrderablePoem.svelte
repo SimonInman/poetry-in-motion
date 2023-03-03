@@ -41,24 +41,18 @@
   <div class="flex-item">
     <!-- <VerticalList items={[]} /> -->
     <!-- Just need to hand each LineSlot a 0-N index.
-    Use #each with the indexes as a little hack to do this. -->
+    Use #each with the indexes as a little hack to do
+    this. Also allows us to put the blank line spacers
+    in with correct indexing -->
     {#each poem_as_list_with_index as poem}
-      <LineSlot slotIndex={poem.id} items={[]} />
+      {#if poem.name === "\n"}
+        <div class="vertical-spacer" />
+      {:else}
+        <LineSlot slotIndex={poem.id} items={[]} />
+      {/if}
     {/each}
   </div>
 </div>
-
-<!-- <div
-  use:dndzone={{ items: myItems, ...otherOptions }}
-  on:consider={handler}
-  on:finalize={handler}
->
-  {#each myItems as item (item.id)}
-    <div>
-      this is now a draggable div that can be dropped in other dnd zones
-    </div>
-  {/each}
-</div> -->
 
 <!-- <VerticalList items={poem_as_list_with_index} /> -->
 <style>
@@ -74,6 +68,11 @@
   div.spacer {
     font-size: 0;
     width: 20px;
+    line-height: 0;
+  }
+  div.spacer {
+    font-size: 0;
+    height: 10px;
     line-height: 0;
   }
 </style>
