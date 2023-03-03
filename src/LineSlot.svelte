@@ -9,6 +9,12 @@
 
   const flipDurationMs = 300;
 
+  $: options = {
+    dropFromOthersDisabled: items.length,
+    items,
+    flipDurationMs,
+  };
+
   function handleDndConsider(e) {
     items = e.detail.items;
   }
@@ -21,14 +27,18 @@
       return itemWithIndex.currentIndex == itemWithIndex.item.id;
     }).map((itemWithIndex) => itemWithIndex.currentIndex);
     correctlyPlacedSet = new Set(correctlyPlacedItems);
-    console.log(correctlyPlacedSet);
-    console.log(correctlyPlacedSet.has(0));
+    // console.log(correctlyPlacedSet);
+    // console.log(correctlyPlacedSet.has(0));
     items = e.detail.items;
+    console.log(
+      "is dropFromOthersDisabled: %s",
+      options.dropFromOthersDisabled
+    );
   }
 </script>
 
 <section
-  use:dndzone={{ items, flipDurationMs }}
+  use:dndzone={options}
   on:consider={handleDndConsider}
   on:finalize={handleDndFinalize}
 >
