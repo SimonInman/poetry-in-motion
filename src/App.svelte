@@ -107,6 +107,17 @@
     padding: 0.5em;
     max-width: 240px;
     margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* html {
+    box-sizing: border-box;
+  } */
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
   }
 
   h1 {

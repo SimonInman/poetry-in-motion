@@ -28,7 +28,8 @@
   }
 </script>
 
-<section
+<div
+  class="foo"
   use:dndzone={{ items, flipDurationMs }}
   on:consider={handleDndConsider}
   on:finalize={handleDndFinalize}
@@ -41,15 +42,17 @@
     </div>
     <!-- {/if} -->
   {/each}
-</section>
+</div>
 
 <style>
-  section {
-    width: 100%;
+  div.foo {
+    width: 500px;
     padding: 0.3em;
     border: 1px solid black;
-    overflow: scroll;
-    height: 1620px;
+    /* overflow: scroll; */
+    /* height: 1620px; */
+    /* float: right; */
+    box-sizing: border-box;
   }
   .correct {
     background-color: lightgreen;
@@ -57,6 +60,7 @@
 
   div.line {
     padding-left: 5px;
+    background-color: aliceblue;
   }
 
   div.blah {

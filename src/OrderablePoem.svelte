@@ -36,7 +36,7 @@
   <div class="flex-item">
     <LineBank items={ShuffledWithIndexes} />
   </div>
-  <div class="spacer" />
+  <!-- <div class="spacer" /> -->
 
   <div class="flex-item">
     <!-- <VerticalList items={[]} /> -->
@@ -58,12 +58,12 @@
 <style>
   .container {
     /* background-color: #2e4272; */
-    display: flex;
-    width: 100%;
-  }
-  .flex-item {
-    /* flex-grow: 1; */
-    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
   div.spacer {
     font-size: 0;
@@ -72,7 +72,8 @@
   }
   div.vertical-spacer {
     font-size: 0;
-    height: 15px;
+    border-bottom: 1px solid black;
+    height: 24px;
     line-height: 0;
   }
 </style>
