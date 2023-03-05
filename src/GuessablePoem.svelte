@@ -58,12 +58,13 @@
   </div>
 </div>
 <p>guessed words: {guessed_words.size}</p>
+<p>BANG</p>
 
 <style>
   div.poem {
     text-align: left;
     display: inline-block;
-    font-size: large;
+    font-size: medium;
     /* line-height: 50%; */
     font-family: "Times New Roman", Times, serif;
   }
