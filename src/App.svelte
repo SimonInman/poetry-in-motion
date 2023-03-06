@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { Router } from "svelte-router-spa";
+  import { routes } from "./routes.js";
+
   import GuessablePoem from "./GuessablePoem.svelte";
   import OrderablePoem from "./OrderablePoem.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
@@ -39,7 +42,10 @@
       name = "";
     }
   }
+  let options = { gaPageviews: true };
 </script>
+
+<Router {routes} {options} />
 
 {#if SelectedPoem === undefined}
   <main>
