@@ -6,9 +6,6 @@
 
   let currentItemId;
 
-  //   let correctlyPlacedSet: Set<number>;
-  let correctlyPlacedSet = new Set();
-
   const flipDurationMs = 300;
 
   $: options = {
@@ -28,11 +25,6 @@
     } else {
       currentItemId = null;
     }
-
-    console.log(
-      "is dropFromOthersDisabled: %s",
-      options.dropFromOthersDisabled
-    );
   }
 </script>
 
@@ -53,9 +45,7 @@
       {#if item.name === "\n"}
         <!-- skip -->
       {:else}
-        <!-- <div class="line" class:correct={slotIndex === item.id}> -->
         {item.name}
-        <!-- </div> -->
       {/if}
     </div>
   {/each}
@@ -75,9 +65,6 @@
   .correct {
     background-color: lightgreen;
   }
-  /* .firstSlot {
-    border-top: 1px solid black;
-  } */
 
   div.line {
     padding-left: 5px;
@@ -87,8 +74,6 @@
   div.blah {
     text-align: left;
     width: 100%;
-    /* padding: 0.2em; */
     border: 0px solid blue;
-    /* margin: 0.15em 0; */
   }
 </style>

@@ -5,7 +5,6 @@
 
   items = items.filter((line) => line.name != "\n");
 
-  //   let correctlyPlacedSet: Set<number>;
   let correctlyPlacedSet = new Set();
 
   const flipDurationMs = 300;
@@ -15,21 +14,12 @@
   }
 
   function handleDndFinalize(e) {
-    // let ItemsWithIndex = e.detail.items.map((item, currentIndex) => {
-    //   return { currentIndex: currentIndex, item: item };
-    // });
-    // let correctlyPlacedItems = ItemsWithIndex.filter((itemWithIndex) => {
-    //   return itemWithIndex.currentIndex == itemWithIndex.item.id;
-    // }).map((itemWithIndex) => itemWithIndex.currentIndex);
-    // correctlyPlacedSet = new Set(correctlyPlacedItems);
-    // console.log(correctlyPlacedSet);
-    // console.log(correctlyPlacedSet.has(0));
     items = e.detail.items;
   }
 </script>
 
 <div
-  class="foo"
+  class="bank-border"
   use:dndzone={{ items, flipDurationMs }}
   on:consider={handleDndConsider}
   on:finalize={handleDndFinalize}
@@ -40,18 +30,14 @@
         {item.name}
       </div>
     </div>
-    <!-- {/if} -->
   {/each}
 </div>
 
 <style>
-  div.foo {
+  div.bank-border {
     width: 500px;
     padding: 0.3em;
     border: 1px solid black;
-    /* overflow: scroll; */
-    /* height: 1620px; */
-    /* float: right; */
     box-sizing: border-box;
   }
   .correct {
@@ -66,7 +52,6 @@
   div.blah {
     text-align: left;
     width: 100%;
-    /* padding: 0.2em; */
     border: 0.8px solid blue;
     margin: 0.15em 0;
   }
