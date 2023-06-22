@@ -2,7 +2,7 @@
   import GuessablePoem from "./GuessablePoem.svelte";
   import OrderablePoem from "./OrderablePoem.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
-  import { RoadNotTaken, DulceEt } from "./poems.svelte";
+  import { RoadNotTaken, DulceEt, Eagle } from "./poems.svelte";
 
   export let name: string;
 
@@ -58,6 +58,12 @@
           <a on:click={() => setPoem(DulceEt, Difficulty.Easy)}>Easy</a>
           {" ~ "}
           <a on:click={() => setPoem(DulceEt, Difficulty.Hard)}>Hard</a>
+        </li>
+        <li>
+          <i>The Eagle</i> by Alfred, Lord Tennyson:
+          <a on:click={() => setPoem(Eagle, Difficulty.Easy)}>Easy</a>
+          {" ~ "}
+          <a on:click={() => setPoem(Eagle, Difficulty.Hard)}>Hard</a>
         </li>
       </ul>
     </div>
