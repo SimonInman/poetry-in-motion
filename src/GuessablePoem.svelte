@@ -6,12 +6,6 @@
 
   let poemLines = poem.rawPoem.map((line) => line_to_words(line));
 
-  // let poem_as_list = poem.rawPoem
-  //   .split(" ")
-  //   .map((s) => s.replace(/[^A-Za-z0-9-]/g, ""));
-  // .map((w) => toUpperCase());
-  //   let word_set = new Set(poem_as_list);
-
   function line_to_words(line: string): string[] {
     return line.split(" ").map((s) => s.replace(/[^A-Za-z0-9-]/g, ""));
   }
@@ -23,12 +17,9 @@
   }
 </script>
 
-<!-- <p>{poemLines}</p> -->
 <div style="text-align: center;">
   <div class="poem">
     {#each poemLines as line, line_i}
-      <!-- let line_as_list = poem.rawPoem .split(" ") .map((s) =>
-  s.replace(/[^A-Za-z0-9-]/g, "")); -->
       {#if line.length == 1 && line[0] === ""}
         <br />
       {:else}
@@ -40,7 +31,6 @@
               class:word={`${line_i}_${word_j}` === boxedWord}
               on:mouseenter={() => {
                 boxedWord = `${line_i}_${word_j}`;
-                console.log(boxedWord);
               }}
               on:mouseleave={() => {
                 boxedWord = "";
@@ -63,16 +53,13 @@
   div.poem {
     text-align: left;
     display: inline-block;
-    font-size: large;
-    /* line-height: 50%; */
+    font-size: medium;
     font-family: "Times New Roman", Times, serif;
   }
 
   span {
     border-color: white;
     border-style: solid;
-    /* padding-top: 2px;
-    padding-bottom: 2px; */
     display: inline-block;
   }
 
