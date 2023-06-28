@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+  import App from "./App.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
 
   export let Eagle: Poem = {
@@ -12,6 +13,41 @@
       "The wrinkled sea beneath him crawls;",
       "He watches from his mountain walls,",
       "And like a thunderbolt he falls.",
+    ],
+  };
+
+  export let Sonnet116: Poem = {
+    title: "Sonnet 116",
+    author: "William Shakespeare",
+    rawPoem: [
+      "Let me not to the marriage of true minds",
+      "Admit impediments. Love is not love",
+      "Which alters when it alteration finds,",
+      "Or bends with the remover to remove.",
+      "O no! it is an ever-fixed mark",
+      "That looks on tempests and is never shaken;",
+      "It is the star to every wand'ring bark,",
+      "Whose worth's unknown, although his height be taken.",
+      "Love's not Time's fool, though rosy lips and cheeks",
+      "Within his bending sickle's compass come;",
+      "Love alters not with his brief hours and weeks,",
+      "But bears it out even to the edge of doom.",
+      "If this be error and upon me prov'd,",
+      "I never writ, nor no man ever lov'd.",
+    ],
+  };
+
+  export let Tide: Poem = {
+    title: "There is a tide in the affairs of men",
+    author: "William Shakespeare",
+    rawPoem: [
+      "There is a tide in the affairs of men",
+      "Which, taken at the flood, leads on to fortune;",
+      "Omitted, all the voyage of their life",
+      "Is bound in shallows and in miseries.",
+      "On such a full sea are we now afloat;",
+      "And we must take the current when it serves,",
+      "Or lose our ventures.",
     ],
   };
 
@@ -82,4 +118,6 @@
       "Pro patria mori.",
     ],
   };
+
+  export let poemsList: Array<Poem> = [DulceEt, RoadNotTaken, Eagle, Sonnet116, Tide];
 </script>
