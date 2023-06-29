@@ -1,4 +1,5 @@
 <script lang="ts">
+  import GuessableWord from "./GuessableWord.svelte";
   import type { Poem } from "./types.svelte";
   export let poem: Poem;
   export let guessed_words: Set<string>;
@@ -19,26 +20,15 @@
 
 <div style="text-align: center;">
   <div class="poem">
-    {#each poemLines as line, line_i}
+    {#each poemLines as line}
       {#if line.length == 1 && line[0] === ""}
         <br />
       {:else}
-        {#each line as word, word_j}
+        {#each line as word}
           {#if guessed_words.has(word.toUpperCase())}
             {word}{" "}
           {:else}
-            <span
-              class:word={`${line_i}_${word_j}` === boxedWord}
-              on:mouseenter={() => {
-                boxedWord = `${line_i}_${word_j}`;
-              }}
-              on:mouseleave={() => {
-                boxedWord = "";
-              }}
-              on:click={() => reveal_word(word)}
-            >
-              -----
-            </span>
+            <GuessableWord {word} action={reveal_word} />
             {" "}
           {/if}
         {/each}
@@ -55,16 +45,5 @@
     display: inline-block;
     font-size: medium;
     font-family: "Times New Roman", Times, serif;
-  }
-
-  span {
-    border-color: white;
-    border-style: solid;
-    display: inline-block;
-  }
-
-  .word {
-    border-color: #ff3e00;
-    border-style: solid;
   }
 </style>

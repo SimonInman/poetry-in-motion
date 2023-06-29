@@ -2,7 +2,14 @@
   import GuessablePoem from "./GuessablePoem.svelte";
   import OrderablePoem from "./OrderablePoem.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
-  import { RoadNotTaken, DulceEt, Eagle, Sonnet116, Tide, poemsList} from "./poems.svelte";
+  import {
+    RoadNotTaken,
+    DulceEt,
+    Eagle,
+    Sonnet116,
+    Tide,
+    poemsList,
+  } from "./poems.svelte";
   import poems from "./poems.svelte";
 
   export let name: string;
@@ -53,21 +60,23 @@
     <h2>Select poem to start</h2>
     <div>
       <ul>
-    {#each poemsList as poem}
-        <li>
-          <i>{poem.title}</i> by {poem.author}:
-          <a on:click={() => setPoem(poem, Difficulty.Easy)}>Easy</a>
-          {" ~ "}
-          <a on:click={() => setPoem(poem, Difficulty.Hard)}>Hard</a>
-        </li>
-    {/each}
+        {#each poemsList as poem}
+          <li>
+            <i>{poem.title}</i> by {poem.author}:
+            <a on:click={() => setPoem(poem, Difficulty.Easy)}>Easy</a>
+            {" ~ "}
+            <a on:click={() => setPoem(poem, Difficulty.Hard)}>Hard</a>
+          </li>
+        {/each}
       </ul>
     </div>
   </main>
 {:else}
   <main>
     <a style="float: left;" on:click={() => clearPoem()}>Back</a>
-    <h1 style="display: inline-block">{SelectedPoem.title} BY {SelectedPoem.author}</h1>
+    <h1 style="display: inline-block">
+      {SelectedPoem.title} BY {SelectedPoem.author}
+    </h1>
     {#if SelectedDifficulty === Difficulty.Easy}
       <h3>Drag the poem lines into the correct order on the right-hand box</h3>
 
@@ -108,9 +117,9 @@
     font-weight: 100;
   }
 
-  li{
+  li {
     margin: 15px 0;
-}
+  }
 
   @media (min-width: 640px) {
     main {
