@@ -15,6 +15,9 @@
     .map(({ value }) => value);
 </script>
 
+<h3>Drag the poem lines into the correct order on the right-hand box</h3>
+
+<br />
 <div class="container">
   <div class="flex-item">
     <LineBank items={ShuffledWithIndexes} />

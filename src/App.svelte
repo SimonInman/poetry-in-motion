@@ -2,6 +2,7 @@
   import GuessablePoem from "./GuessablePoem.svelte";
   import OrderablePoem from "./OrderablePoem.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
+  import { Difficulty } from "./types.svelte";
   import {
     RoadNotTaken,
     DulceEt,
@@ -13,11 +14,6 @@
   import poems from "./poems.svelte";
 
   export let name: string;
-
-  enum Difficulty {
-    Easy = 1,
-    Hard,
-  }
 
   let SelectedPoem: Poem;
   let SelectedDifficulty = Difficulty.Easy;
@@ -65,6 +61,8 @@
             <i>{poem.title}</i> by {poem.author}:
             <a on:click={() => setPoem(poem, Difficulty.Easy)}>Easy</a>
             {" ~ "}
+            <a on:click={() => setPoem(poem, Difficulty.Medium)}>Medium</a>
+            {" ~ "}
             <a on:click={() => setPoem(poem, Difficulty.Hard)}>Hard</a>
           </li>
         {/each}
@@ -78,9 +76,6 @@
       {SelectedPoem.title} BY {SelectedPoem.author}
     </h1>
     {#if SelectedDifficulty === Difficulty.Easy}
-      <h3>Drag the poem lines into the correct order on the right-hand box</h3>
-
-      <br />
       <OrderablePoem poem={SelectedPoem} />
     {:else}
       <input
@@ -90,7 +85,11 @@
         size="100"
       />
       <br />
-      <GuessablePoem poem={SelectedPoem} {guessed_words} />
+      <GuessablePoem
+        poem={SelectedPoem}
+        {guessed_words}
+        difficulty={SelectedDifficulty}
+      />
     {/if}
   </main>
 {/if}

@@ -1,6 +1,8 @@
 <script lang="ts">
+    import { Difficulty } from "./types.svelte";
     // let boxedWord: string;
     export let action: (word: string) => void;
+    export let difficulty: Difficulty;
     // export let line_i: number;
     // export let word_j: number;
     export let word: string;
@@ -18,7 +20,11 @@
     }}
     on:click={() => action(word)}
 >
-    -----
+    {#if difficulty === Difficulty.Medium && word.length > 2}
+        {word[0]}----
+    {:else}
+        -----
+    {/if}
 </button>
 
 <style>

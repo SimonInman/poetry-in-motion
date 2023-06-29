@@ -1,8 +1,9 @@
 <script lang="ts">
   import GuessableWord from "./GuessableWord.svelte";
-  import type { Poem } from "./types.svelte";
+  import type { Poem, Difficulty } from "./types.svelte";
   export let poem: Poem;
   export let guessed_words: Set<string>;
+  export let difficulty: Difficulty;
   let boxedWord: string;
 
   let poemLines = poem.rawPoem.map((line) => line_to_words(line));
@@ -38,7 +39,7 @@
           {:else if guessed_words.has(word.toUpperCase())}
             {word}{" "}
           {:else}
-            <GuessableWord {word} action={cheat_word} />
+            <GuessableWord {word} action={cheat_word} {difficulty} />
             {" "}
           {/if}
         {/each}
