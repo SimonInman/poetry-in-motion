@@ -87,17 +87,17 @@
     rawPoem: [
       "Bent double, like old beggars under sacks,",
       "Knock-kneed, coughing like hags, we cursed through sludge,",
-      " Till on the haunting flares we turned our backs",
+      "Till on the haunting flares we turned our backs",
       "And towards our distant rest began to trudge.",
       "Men marched asleep. Many had lost their boots",
       "But limped on, blood-shod. All went lame; all blind;",
       "Drunk with fatigue; deaf even to the hoots",
       "Of gas-shells dropping softly behind.",
       "\n",
-      "Gas! GAS! Quick, boys!—An ecstasy of fumbling",
+      "Gas! GAS! Quick, boys! An ecstasy of fumbling",
       "Fitting the clumsy helmets just in time,",
       "But someone still was yelling out and stumbling",
-      "And flound’ring like a man in fire or lime.—",
+      "And flound’ring like a man in fire or lime.",
       "Dim through the misty panes and thick green light,",
       "As under a green sea, I saw him drowning.",
       "\n",
@@ -119,5 +119,11 @@
     ],
   };
 
-  export let poemsList: Array<Poem> = [DulceEt, RoadNotTaken, Eagle, Sonnet116, Tide];
+  export let poemsList: Array<Poem> = [
+    DulceEt,
+    RoadNotTaken,
+    Eagle,
+    Sonnet116,
+    Tide,
+  ];
 </script>
