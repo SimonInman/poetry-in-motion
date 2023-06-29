@@ -6,9 +6,16 @@
   let boxedWord: string;
 
   let poemLines = poem.rawPoem.map((line) => line_to_words(line));
+  let cheated_words = new Set<string>();
 
   function line_to_words(line: string): string[] {
     return line.split(" ").map((s) => s.replace(/[^A-Za-z0-9-]/g, ""));
+  }
+
+  function cheat_word(word: string): any {
+    let upper_guess = word.toUpperCase();
+    cheated_words.add(upper_guess);
+    cheated_words = cheated_words;
   }
 
   function reveal_word(word: string): any {
@@ -25,10 +32,13 @@
         <br />
       {:else}
         {#each line as word}
-          {#if guessed_words.has(word.toUpperCase())}
+          {#if cheated_words.has(word.toUpperCase())}
+            <div class="cheated_word">{word}{" "}</div>
+            {" "}
+          {:else if guessed_words.has(word.toUpperCase())}
             {word}{" "}
           {:else}
-            <GuessableWord {word} action={reveal_word} />
+            <GuessableWord {word} action={cheat_word} />
             {" "}
           {/if}
         {/each}
@@ -40,6 +50,11 @@
 <p>guessed words: {guessed_words.size}</p>
 
 <style>
+  div.cheated_word {
+    color: red;
+    display: inline-block;
+  }
+
   div.poem {
     text-align: left;
     display: inline-block;
