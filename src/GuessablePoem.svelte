@@ -2,12 +2,14 @@
   import GuessableWord from "./GuessableWord.svelte";
   import type { Poem, Difficulty } from "./types.svelte";
   export let poem: Poem;
-  export let guessed_words: Set<string>;
   export let difficulty: Difficulty;
-  let boxedWord: string;
+
+  let name: string;
+  let guessed_words = new Set<string>();
+  let cheated_words = new Set<string>();
+  let word_set: Set<string>;
 
   let poemLines = poem.rawPoem.map((line) => line_to_words(line));
-  let cheated_words = new Set<string>();
 
   function line_to_words(line: string): string[] {
     return line.split(" ").map((s) => s.replace(/[^A-Za-z0-9-]/g, ""));
@@ -19,12 +21,32 @@
     cheated_words = cheated_words;
   }
 
-  function reveal_word(word: string): any {
-    let upper_guess = word.toUpperCase();
-    guessed_words.add(upper_guess);
-    guessed_words = guessed_words;
+  function check_guess(guess: string) {
+    if (word_set === undefined) {
+      let poem_as_list = poem.rawPoem
+        .join(" ")
+        .split(" ")
+        .map((s) => s.replace(/[^A-Za-z0-9-]/g, ""))
+        .map((w) => w.toUpperCase());
+      word_set = new Set(poem_as_list);
+    }
+
+    let upper_guess = name.toUpperCase();
+    if (word_set.has(upper_guess) && !guessed_words.has(upper_guess)) {
+      guessed_words.add(upper_guess);
+      guessed_words = guessed_words;
+      name = "";
+    }
   }
 </script>
+
+<input
+  bind:value={name}
+  on:input={() => check_guess(name)}
+  placeholder="Enter poem words here..."
+  size="100"
+/>
+<br />
 
 <div style="text-align: center;">
   <div class="poem">

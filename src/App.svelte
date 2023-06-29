@@ -3,23 +3,10 @@
   import OrderablePoem from "./OrderablePoem.svelte";
   import type { Poem, RevealedWord } from "./types.svelte";
   import { Difficulty } from "./types.svelte";
-  import {
-    RoadNotTaken,
-    DulceEt,
-    Eagle,
-    Sonnet116,
-    Tide,
-    poemsList,
-  } from "./poems.svelte";
-  import poems from "./poems.svelte";
-
-  export let name: string;
+  import { poemsList } from "./poems.svelte";
 
   let SelectedPoem: Poem;
   let SelectedDifficulty = Difficulty.Easy;
-
-  let word_set;
-  let guessed_words = new Set<string>();
 
   function setPoem(poem: Poem, difficulty: Difficulty) {
     SelectedPoem = poem;
@@ -29,24 +16,6 @@
   function clearPoem() {
     SelectedPoem = undefined;
     SelectedDifficulty = undefined;
-  }
-
-  function check_guess(guess: string) {
-    if (word_set === undefined) {
-      let poem_as_list = SelectedPoem.rawPoem
-        .join(" ")
-        .split(" ")
-        .map((s) => s.replace(/[^A-Za-z0-9-]/g, ""))
-        .map((w) => w.toUpperCase());
-      word_set = new Set(poem_as_list);
-    }
-
-    let upper_guess = name.toUpperCase();
-    if (word_set.has(upper_guess) && !guessed_words.has(upper_guess)) {
-      guessed_words.add(upper_guess);
-      guessed_words = guessed_words;
-      name = "";
-    }
   }
 </script>
 
@@ -78,18 +47,7 @@
     {#if SelectedDifficulty === Difficulty.Easy}
       <OrderablePoem poem={SelectedPoem} />
     {:else}
-      <input
-        bind:value={name}
-        on:input={() => check_guess(name)}
-        placeholder="Enter poem words here..."
-        size="100"
-      />
-      <br />
-      <GuessablePoem
-        poem={SelectedPoem}
-        {guessed_words}
-        difficulty={SelectedDifficulty}
-      />
+      <GuessablePoem poem={SelectedPoem} difficulty={SelectedDifficulty} />
     {/if}
   </main>
 {/if}
